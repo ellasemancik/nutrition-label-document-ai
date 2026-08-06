@@ -1,4 +1,7 @@
-from image_check import check_image
+from ocr_reader import read_text
 
 
-check_image("data/raw/label_01.png")
+text = read_text("data/raw/label_01.png")
+
+print("OCR result:")
+print(text)
