@@ -1,5 +1,6 @@
 {
   "image": "label_02.png",
+  "servings_per_container": 3,
   "serving_size": "2/3 cup (140g)",
   "calories": 350,
   "total_fat_g": 18,

@@ -1,22 +1,26 @@
 from ocr_reader import read_text
-from preprocess import make_grayscale
 
 
-original_image = "data/raw/label_01.png"
-grayscale_image = "data/outputs/label_01_grayscale.png"
+full_image = "data/raw/label_02/label_02.png"
+per_serving_image = "data/raw/label_02/label_02_per_serving_only.png"
 
-original_output = "data/outputs/label_01_original_ocr.txt"
-grayscale_output = "data/outputs/label_01_grayscale_ocr.txt"
+full_output = "data/outputs/label_02/label_02_full_ocr.txt"
+per_serving_output = "data/outputs/label_02/label_02_per_serving_ocr.txt"
 
-make_grayscale(original_image, grayscale_image)
 
-original_text = read_text(original_image)
-grayscale_text = read_text(grayscale_image)
+full_text = read_text(full_image)
+per_serving_text = read_text(per_serving_image)
 
-with open(original_output, "w", encoding="utf-8") as file:
-    file.write(original_text)
 
-with open(grayscale_output, "w", encoding="utf-8") as file:
-    file.write(grayscale_text)
+with open(full_output, "w", encoding="utf-8") as file:
+    file.write(full_text)
 
-print("Finished comparing original and grayscale OCR.")
+with open(per_serving_output, "w", encoding="utf-8") as file:
+    file.write(per_serving_text)
+
+
+print("Full label OCR:")
+print(full_text)
+
+print("\nPer-serving OCR:")
+print(per_serving_text)
