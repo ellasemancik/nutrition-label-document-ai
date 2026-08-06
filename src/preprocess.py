@@ -19,3 +19,16 @@ def make_larger(image_path, output_path):
     larger_image.save(output_path)
 
     return output_path
+
+
+def make_thresholded(image_path, output_path, threshold=160):
+    image = Image.open(image_path)
+    grayscale_image = image.convert("L")
+
+    thresholded_image = grayscale_image.point(
+        lambda pixel: 255 if pixel > threshold else 0
+    )
+
+    thresholded_image.save(output_path)
+
+    return output_path

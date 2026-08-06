@@ -1,26 +1,32 @@
 from ocr_reader import read_text
+from preprocess import make_thresholded
 
 
-full_image = "data/raw/label_02/label_02.png"
-per_serving_image = "data/raw/label_02/label_02_per_serving_only.png"
+original_image = "data/raw/label_02/label_02_per_serving_only.png"
 
-full_output = "data/outputs/label_02/label_02_full_ocr.txt"
-per_serving_output = "data/outputs/label_02/label_02_per_serving_ocr.txt"
+threshold_values = [100, 140, 180]
 
+for threshold in threshold_values:
+    image_output = (
+        f"data/outputs/label_02/"
+        f"label_02_threshold_{threshold}.png"
+    )
 
-full_text = read_text(full_image)
-per_serving_text = read_text(per_serving_image)
+    text_output = (
+        f"data/outputs/label_02/"
+        f"label_02_threshold_{threshold}_ocr.txt"
+    )
 
+    make_thresholded(
+        original_image,
+        image_output,
+        threshold
+    )
 
-with open(full_output, "w", encoding="utf-8") as file:
-    file.write(full_text)
+    text = read_text(image_output)
 
-with open(per_serving_output, "w", encoding="utf-8") as file:
-    file.write(per_serving_text)
+    with open(text_output, "w", encoding="utf-8") as file:
+        file.write(text)
 
-
-print("Full label OCR:")
-print(full_text)
-
-print("\nPer-serving OCR:")
-print(per_serving_text)
+    print(f"\nThreshold {threshold}:")
+    print(text)
