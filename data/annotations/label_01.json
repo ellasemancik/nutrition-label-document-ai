@@ -1,0 +1,13 @@
+{
+  "image": "label_01.png",
+  "serving_size": "1 container",
+  "calories": 260,
+  "total_fat_g": 14,
+  "saturated_fat_g": 9,
+  "cholesterol_mg": 50,
+  "sodium_mg": 60,
+  "total_carbohydrate_g": 30,
+  "dietary_fiber_g": 2,
+  "total_sugars_g": 23,
+  "protein_g": 5
+}
