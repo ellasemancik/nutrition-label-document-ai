@@ -1,15 +1,22 @@
 from ocr_reader import read_text
+from preprocess import make_grayscale
 
 
-image_path = "data/raw/label_01.png"
-output_path = "data/outputs/label_01_ocr.txt"
+original_image = "data/raw/label_01.png"
+grayscale_image = "data/outputs/label_01_grayscale.png"
 
-text = read_text(image_path)
+original_output = "data/outputs/label_01_original_ocr.txt"
+grayscale_output = "data/outputs/label_01_grayscale_ocr.txt"
 
-print("OCR result:")
-print(text)
+make_grayscale(original_image, grayscale_image)
 
-with open(output_path, "w", encoding="utf-8") as output_file:
-    output_file.write(text)
+original_text = read_text(original_image)
+grayscale_text = read_text(grayscale_image)
 
-print("OCR result saved to:", output_path)
+with open(original_output, "w", encoding="utf-8") as file:
+    file.write(original_text)
+
+with open(grayscale_output, "w", encoding="utf-8") as file:
+    file.write(grayscale_text)
+
+print("Finished comparing original and grayscale OCR.")
