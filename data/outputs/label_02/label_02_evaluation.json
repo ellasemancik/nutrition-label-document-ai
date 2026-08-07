@@ -1,0 +1,11 @@
+{
+  "correct_fields": 9,
+  "total_fields": 10,
+  "accuracy": 0.9,
+  "differences": {
+    "calories": {
+      "expected": 350,
+      "actual": null
+    }
+  }
+}

@@ -6,7 +6,9 @@ from extract_fields import extract_nutrition_fields
 
 ocr_file = "data/outputs/label_02/label_02_threshold_140_ocr.txt"
 annotation_file = "data/annotations/label_02.json"
+
 json_output = "data/outputs/label_02/label_02_extracted.json"
+evaluation_output = "data/outputs/label_02/label_02_evaluation.json"
 
 
 with open(ocr_file, "r", encoding="utf-8") as file:
@@ -27,6 +29,10 @@ with open(annotation_file, "r", encoding="utf-8") as file:
 evaluation = compare_results(expected_results, extracted_results)
 
 
+with open(evaluation_output, "w", encoding="utf-8") as file:
+    json.dump(evaluation, file, indent=2)
+
+
 print("Extracted fields:")
 print(extracted_results)
 
@@ -37,3 +43,6 @@ print("Accuracy:", round(evaluation["accuracy"] * 100, 2), "%")
 
 print("\nDifferences:")
 print(evaluation["differences"])
+
+print("\nExtracted JSON saved to:", json_output)
+print("Evaluation saved to:", evaluation_output)
