@@ -1,32 +1,23 @@
-from ocr_reader import read_text
-from preprocess import make_thresholded
+import json
+
+from extract_fields import extract_nutrition_fields
 
 
-original_image = "data/raw/label_02/label_02_per_serving_only.png"
+ocr_file = "data/outputs/label_02/label_02_threshold_140_ocr.txt"
+json_output = "data/outputs/label_02/label_02_extracted.json"
 
-threshold_values = [100, 140, 180]
 
-for threshold in threshold_values:
-    image_output = (
-        f"data/outputs/label_02/"
-        f"label_02_threshold_{threshold}.png"
-    )
+with open(ocr_file, "r", encoding="utf-8") as file:
+    ocr_text = file.read()
 
-    text_output = (
-        f"data/outputs/label_02/"
-        f"label_02_threshold_{threshold}_ocr.txt"
-    )
 
-    make_thresholded(
-        original_image,
-        image_output,
-        threshold
-    )
+results = extract_nutrition_fields(ocr_text)
 
-    text = read_text(image_output)
 
-    with open(text_output, "w", encoding="utf-8") as file:
-        file.write(text)
+with open(json_output, "w", encoding="utf-8") as file:
+    json.dump(results, file, indent=2)
 
-    print(f"\nThreshold {threshold}:")
-    print(text)
+
+print("Extracted fields:")
+print(results)
+print("Saved to:", json_output)
