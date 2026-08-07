@@ -5,6 +5,7 @@ def extract_nutrition_fields(text):
     results = {
         "calories": None,
         "servings_per_container": None,
+        "serving_size": None,
         "total_fat_g": None,
         "saturated_fat_g": None,
         "cholesterol_mg": None,
@@ -22,6 +23,11 @@ def extract_nutrition_fields(text):
     )
     servings = re.search(
     r"(\d+)\s+servings?\.?\s+per\s+container",
+    text,
+    re.IGNORECASE
+    )
+    serving_size = re.search(
+    r"Serving\s+size\s+(.+)",
     text,
     re.IGNORECASE
     )
@@ -59,6 +65,9 @@ def extract_nutrition_fields(text):
         
     if servings:
         results["servings_per_container"] = int(servings.group(1))
+        
+    if serving_size:
+        results["serving_size"] = serving_size.group(1).strip()
 
     if total_fat:
         results["total_fat_g"] = int(total_fat.group(1))

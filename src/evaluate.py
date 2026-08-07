@@ -4,7 +4,7 @@ def compare_results(expected, actual):
     differences = {}
 
     for field, expected_value in expected.items():
-        if field == "image" or field == "serving_size":
+        if field == "image":
             continue
 
         total += 1

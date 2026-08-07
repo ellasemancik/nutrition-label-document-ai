@@ -5,13 +5,36 @@ def validate_results(results):
         if value is None:
             warnings.append(f"{field} was not found")
 
-        elif value < 0:
+        elif isinstance(value, (int, float)) and value < 0:
             warnings.append(f"{field} cannot be negative")
 
-    if results["calories"] is not None and results["calories"] > 2000:
+    calories = results.get("calories")
+    sodium = results.get("sodium_mg")
+
+    if calories is not None and calories > 2000:
         warnings.append("calories looks unusually high")
 
-    if results["sodium_mg"] is not None and results["sodium_mg"] > 5000:
+    if sodium is not None and sodium > 5000:
         warnings.append("sodium looks unusually high")
+
+    # Cross-field checks
+    total_fat = results.get("total_fat_g")
+    saturated_fat = results.get("saturated_fat_g")
+
+    if total_fat is not None and saturated_fat is not None:
+        if saturated_fat > total_fat:
+            warnings.append("saturated fat is greater than total fat")
+
+    carbohydrates = results.get("total_carbohydrate_g")
+    fiber = results.get("dietary_fiber_g")
+    sugars = results.get("total_sugars_g")
+
+    if carbohydrates is not None and fiber is not None:
+        if fiber > carbohydrates:
+            warnings.append("dietary fiber is greater than total carbohydrate")
+
+    if carbohydrates is not None and sugars is not None:
+        if sugars > carbohydrates:
+            warnings.append("total sugars is greater than total carbohydrate")
 
     return warnings

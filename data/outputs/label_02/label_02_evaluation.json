@@ -1,8 +1,12 @@
 {
   "correct_fields": 9,
-  "total_fields": 10,
-  "accuracy": 0.9,
+  "total_fields": 11,
+  "accuracy": 0.8181818181818182,
   "differences": {
+    "serving_size": {
+      "expected": "2/3 cup (140g)",
+      "actual": "2/3 cup (1"
+    },
     "calories": {
       "expected": 350,
       "actual": null

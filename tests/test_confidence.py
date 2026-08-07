@@ -9,6 +9,10 @@ def test_confidence_score():
         "total_fat_g": 18
     }
 
-    confidence = calculate_confidence(results)
+    warnings = [
+        "calories was not found"
+    ]
 
-    assert confidence == 0.75
+    confidence = calculate_confidence(results, warnings)
+
+    assert confidence == 0.70

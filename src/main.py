@@ -23,7 +23,10 @@ extracted_results = extract_nutrition_fields(ocr_text)
 validation_warnings = validate_results(extracted_results)
 
 # Simple score based on how many fields found
-confidence_score = calculate_confidence(extracted_results)
+confidence_score = calculate_confidence(
+    extracted_results,
+    validation_warnings
+)
 
 # Combines the extracted data and extra info
 final_results = {

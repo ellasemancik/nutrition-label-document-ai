@@ -2,6 +2,7 @@
   "fields": {
     "calories": null,
     "servings_per_container": 3,
+    "serving_size": "2/3 cup (1",
     "total_fat_g": 18,
     "saturated_fat_g": 11,
     "cholesterol_mg": 50,
@@ -14,5 +15,5 @@
   "validation_warnings": [
     "calories was not found"
   ],
-  "confidence_score": 0.9
+  "confidence_score": 0.859090909090909
 }
