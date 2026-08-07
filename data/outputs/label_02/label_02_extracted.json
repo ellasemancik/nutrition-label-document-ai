@@ -1,6 +1,11 @@
 {
+  "calories": null,
   "total_fat_g": 18,
+  "saturated_fat_g": 11,
+  "cholesterol_mg": 50,
   "sodium_mg": 115,
   "total_carbohydrate_g": 43,
+  "dietary_fiber_g": 3,
+  "total_sugars_g": 37,
   "protein_g": 6
 }

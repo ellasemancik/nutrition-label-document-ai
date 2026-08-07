@@ -19,3 +19,9 @@
 ### Baseline conclusion
 
 The first OCR result works as a starting point, but the image needs preprocessing before the results will be reliable.
+
+## Label 02
+
+- Label 02 extracted 8 of 9 target fields.
+- Calories was missed because OCR did not capture the value 350.
+- The extractor correctly returned null instead of guessing.
