@@ -3,6 +3,7 @@ import json
 from evaluate import compare_results
 from extract_fields import extract_nutrition_fields
 from validate import validate_results
+from confidence import calculate_confidence
 
 
 ocr_file = "data/outputs/label_02/label_02_threshold_140_ocr.txt"
@@ -20,9 +21,12 @@ extracted_results = extract_nutrition_fields(ocr_text)
 
 validation_warnings = validate_results(extracted_results)
 
+confidence_score = calculate_confidence(extracted_results)
+
 final_results = {
     "fields": extracted_results,
-    "validation_warnings": validation_warnings
+    "validation_warnings": validation_warnings,
+    "confidence_score": confidence_score
 }
 
 
@@ -57,3 +61,6 @@ print("Evaluation saved to:", evaluation_output)
 
 print("\nValidation warnings:")
 print(validation_warnings)
+
+print("\nConfidence score:")
+print(round(confidence_score * 100, 2), "%")

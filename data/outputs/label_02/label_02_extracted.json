@@ -13,5 +13,6 @@
   },
   "validation_warnings": [
     "calories was not found"
-  ]
+  ],
+  "confidence_score": 0.9
 }
