@@ -4,6 +4,7 @@ from src.extract_fields import extract_nutrition_fields
 def test_extract_nutrition_fields():
     sample_text = """
     Calories 350
+    3 servings per container
     Total Fat 18g 23%
     Saturated Fat 11g 55%
     Cholesterol 50mg 17%
@@ -17,6 +18,7 @@ def test_extract_nutrition_fields():
     result = extract_nutrition_fields(sample_text)
 
     assert result["calories"] == 350
+    assert result["servings_per_container"] == 3
     assert result["total_fat_g"] == 18
     assert result["saturated_fat_g"] == 11
     assert result["cholesterol_mg"] == 50
