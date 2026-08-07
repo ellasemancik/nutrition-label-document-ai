@@ -20,9 +20,14 @@ extracted_results = extract_nutrition_fields(ocr_text)
 
 validation_warnings = validate_results(extracted_results)
 
+final_results = {
+    "fields": extracted_results,
+    "validation_warnings": validation_warnings
+}
+
 
 with open(json_output, "w", encoding="utf-8") as file:
-    json.dump(extracted_results, file, indent=2)
+    json.dump(final_results, file, indent=2)
 
 
 with open(annotation_file, "r", encoding="utf-8") as file:
