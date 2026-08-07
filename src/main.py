@@ -22,6 +22,11 @@ extracted_results = extract_nutrition_fields(ocr_text)
 # Check for missing or unrealistic values
 validation_warnings = validate_results(extracted_results)
 
+if len(validation_warnings) == 0:
+    validation_status = "passed"
+else:
+    validation_status = "warning"
+
 # Simple score based on how many fields found
 confidence_score = calculate_confidence(
     extracted_results,
@@ -31,6 +36,7 @@ confidence_score = calculate_confidence(
 # Combines the extracted data and extra info
 final_results = {
     "fields": extracted_results,
+    "validation_status": validation_status,
     "validation_warnings": validation_warnings,
     "confidence_score": confidence_score
 }
@@ -50,7 +56,7 @@ evaluation = compare_results(expected_results, extracted_results)
 with open(evaluation_output, "w", encoding="utf-8") as file:
     json.dump(evaluation, file, indent=2)
 
-
+# Print stuff
 print("Extracted fields:")
 print(extracted_results)
 
@@ -70,3 +76,6 @@ print(validation_warnings)
 
 print("\nConfidence score:")
 print(round(confidence_score * 100, 2), "%")
+
+print("\nValidation status:")
+print(validation_status)

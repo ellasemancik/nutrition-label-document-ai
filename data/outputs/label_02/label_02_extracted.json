@@ -12,6 +12,7 @@
     "total_sugars_g": 37,
     "protein_g": 6
   },
+  "validation_status": "warning",
   "validation_warnings": [
     "calories was not found",
     "serving size looks incomplete"
