@@ -2,6 +2,7 @@ import json
 
 from evaluate import compare_results
 from extract_fields import extract_nutrition_fields
+from validate import validate_results
 
 
 ocr_file = "data/outputs/label_02/label_02_threshold_140_ocr.txt"
@@ -16,6 +17,8 @@ with open(ocr_file, "r", encoding="utf-8") as file:
 
 
 extracted_results = extract_nutrition_fields(ocr_text)
+
+validation_warnings = validate_results(extracted_results)
 
 
 with open(json_output, "w", encoding="utf-8") as file:
@@ -46,3 +49,6 @@ print(evaluation["differences"])
 
 print("\nExtracted JSON saved to:", json_output)
 print("Evaluation saved to:", evaluation_output)
+
+print("\nValidation warnings:")
+print(validation_warnings)
