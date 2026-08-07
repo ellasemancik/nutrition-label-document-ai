@@ -36,5 +36,11 @@ def validate_results(results):
     if carbohydrates is not None and sugars is not None:
         if sugars > carbohydrates:
             warnings.append("total sugars is greater than total carbohydrate")
+            
+    serving_size = results.get("serving_size")
+
+    if serving_size is not None:
+        if "(" in serving_size and ")" not in serving_size:
+            warnings.append("serving size looks incomplete")
 
     return warnings
