@@ -1,0 +1,28 @@
+{
+  "fields": {
+    "calories": null,
+    "servings_per_container": null,
+    "serving_size": "2/3 cup (109g",
+    "total_fat_g": null,
+    "saturated_fat_g": null,
+    "cholesterol_mg": 130,
+    "sodium_mg": null,
+    "total_carbohydrate_g": null,
+    "dietary_fiber_g": null,
+    "total_sugars_g": 130,
+    "protein_g": null
+  },
+  "validation_status": "warning",
+  "validation_warnings": [
+    "calories was not found",
+    "servings_per_container was not found",
+    "total_fat_g was not found",
+    "saturated_fat_g was not found",
+    "sodium_mg was not found",
+    "total_carbohydrate_g was not found",
+    "dietary_fiber_g was not found",
+    "protein_g was not found",
+    "serving size looks incomplete"
+  ],
+  "confidence_score": 0
+}

@@ -6,12 +6,12 @@ from extract_fields import extract_nutrition_fields
 from validate import validate_results
 
 
-# Files for label 04
-ocr_file = "data/outputs/label_04/label_04_ocr.txt"
-annotation_file = "data/annotations/label_04.json"
+# Files for label
+ocr_file = "data/outputs/label_03/label_03_threshold_100_ocr.txt"
+annotation_file = "data/annotations/label_03.json"
 
-json_output = "data/outputs/label_04/label_04_extracted.json"
-evaluation_output = "data/outputs/label_04/label_04_evaluation.json"
+json_output = "data/outputs/label_03/label_03_extracted.json"
+evaluation_output = "data/outputs/label_03/label_03_evaluation.json"
 
 
 # Read OCR text
