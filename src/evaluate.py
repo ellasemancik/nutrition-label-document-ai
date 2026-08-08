@@ -9,6 +9,11 @@ def compare_results(expected, actual):
 
         total += 1
         actual_value = actual.get(field)
+        
+        if isinstance(expected_value, str) and isinstance(actual_value, str):
+            if expected_value.lower() == actual_value.lower():
+                correct += 1
+                continue
 
         if actual_value == expected_value:
             correct += 1

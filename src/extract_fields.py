@@ -44,9 +44,9 @@ def extract_nutrition_fields(text):
     )
     sodium = re.search(r"Sodium\s+(\d+)mg", text, re.IGNORECASE)
     carbohydrates = re.search(
-        r"Total\s+Carb\.\s+(\d+)g",
-        text,
-        re.IGNORECASE
+    r"Total\s+Carb(?:\.|ohydrate)?\s+(\d+)g",
+    text,
+    re.IGNORECASE
     )
     fiber = re.search(
         r"Dietary\s+Fiber\s+(\d+)g",

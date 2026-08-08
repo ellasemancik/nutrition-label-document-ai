@@ -1,25 +1,29 @@
 import json
 
+from confidence import calculate_confidence
 from evaluate import compare_results
 from extract_fields import extract_nutrition_fields
 from validate import validate_results
-from confidence import calculate_confidence
 
-# Files used for this label
-ocr_file = "data/outputs/label_02/label_02_threshold_140_ocr.txt"
-annotation_file = "data/annotations/label_02.json"
 
-json_output = "data/outputs/label_02/label_02_extracted.json"
-evaluation_output = "data/outputs/label_02/label_02_evaluation.json"
+# Files for label 04
+ocr_file = "data/outputs/label_04/label_04_ocr.txt"
+annotation_file = "data/annotations/label_04.json"
 
-# Read the OCR text that Tesseract created
+json_output = "data/outputs/label_04/label_04_extracted.json"
+evaluation_output = "data/outputs/label_04/label_04_evaluation.json"
+
+
+# Read OCR text
 with open(ocr_file, "r", encoding="utf-8") as file:
     ocr_text = file.read()
 
-# Turn the text into nutrition fields
+
+# Extract nutrition fields from the OCR text
 extracted_results = extract_nutrition_fields(ocr_text)
 
-# Check for missing or unrealistic values
+
+# Validate the extracted values
 validation_warnings = validate_results(extracted_results)
 
 if len(validation_warnings) == 0:
@@ -27,13 +31,15 @@ if len(validation_warnings) == 0:
 else:
     validation_status = "warning"
 
-# Simple score based on how many fields found
+
+# Calculate confidence
 confidence_score = calculate_confidence(
     extracted_results,
     validation_warnings
 )
 
-# Combines the extracted data and extra info
+
+# Save the extracted result
 final_results = {
     "fields": extracted_results,
     "validation_status": validation_status,
@@ -41,22 +47,25 @@ final_results = {
     "confidence_score": confidence_score
 }
 
-# Save final extraction result
 with open(json_output, "w", encoding="utf-8") as file:
     json.dump(final_results, file, indent=2)
 
-# Load the manually entered correct values
+
+# Load the correct answers
 with open(annotation_file, "r", encoding="utf-8") as file:
     expected_results = json.load(file)
 
-# Compare extraction against correct answer
-evaluation = compare_results(expected_results, extracted_results)
 
-# Save report
+# Compare the extraction to the correct values
+evaluation = compare_results(
+    expected_results,
+    extracted_results
+)
+
 with open(evaluation_output, "w", encoding="utf-8") as file:
     json.dump(evaluation, file, indent=2)
 
-# Print stuff
+
 print("Extracted fields:")
 print(extracted_results)
 
@@ -68,8 +77,8 @@ print("Accuracy:", round(evaluation["accuracy"] * 100, 2), "%")
 print("\nDifferences:")
 print(evaluation["differences"])
 
-print("\nExtracted JSON saved to:", json_output)
-print("Evaluation saved to:", evaluation_output)
+print("\nValidation status:")
+print(validation_status)
 
 print("\nValidation warnings:")
 print(validation_warnings)
@@ -77,5 +86,5 @@ print(validation_warnings)
 print("\nConfidence score:")
 print(round(confidence_score * 100, 2), "%")
 
-print("\nValidation status:")
-print(validation_status)
+print("\nExtracted JSON saved to:", json_output)
+print("Evaluation saved to:", evaluation_output)
