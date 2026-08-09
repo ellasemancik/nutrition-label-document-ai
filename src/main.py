@@ -6,24 +6,24 @@ from extract_fields import extract_nutrition_fields
 from validate import validate_results
 
 
-# Files for label
-ocr_file = "data/outputs/label_03/label_03_threshold_100_ocr.txt"
+# Files for label 03
+ocr_file = "data/outputs/label_03/label_03_psm_11_ocr.txt"
 annotation_file = "data/annotations/label_03.json"
 
 json_output = "data/outputs/label_03/label_03_extracted.json"
 evaluation_output = "data/outputs/label_03/label_03_evaluation.json"
 
 
-# Read OCR text
+# Read the OCR text
 with open(ocr_file, "r", encoding="utf-8") as file:
     ocr_text = file.read()
 
 
-# Extract nutrition fields from the OCR text
+# Extract fields from OCR text
 extracted_results = extract_nutrition_fields(ocr_text)
 
 
-# Validate the extracted values
+# Check extracted values
 validation_warnings = validate_results(extracted_results)
 
 if len(validation_warnings) == 0:
@@ -39,7 +39,7 @@ confidence_score = calculate_confidence(
 )
 
 
-# Save the extracted result
+# Save extracted results
 final_results = {
     "fields": extracted_results,
     "validation_status": validation_status,
@@ -56,7 +56,7 @@ with open(annotation_file, "r", encoding="utf-8") as file:
     expected_results = json.load(file)
 
 
-# Compare the extraction to the correct values
+# Compare extraction with the correct values
 evaluation = compare_results(
     expected_results,
     extracted_results
@@ -85,6 +85,3 @@ print(validation_warnings)
 
 print("\nConfidence score:")
 print(round(confidence_score * 100, 2), "%")
-
-print("\nExtracted JSON saved to:", json_output)
-print("Evaluation saved to:", evaluation_output)

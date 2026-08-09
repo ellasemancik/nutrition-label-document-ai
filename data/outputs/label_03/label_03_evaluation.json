@@ -1,7 +1,7 @@
 {
-  "correct_fields": 0,
+  "correct_fields": 3,
   "total_fields": 11,
-  "accuracy": 0.0,
+  "accuracy": 0.2727272727272727,
   "differences": {
     "servings_per_container": {
       "expected": 3,
@@ -9,7 +9,7 @@
     },
     "serving_size": {
       "expected": "2/3 cup (109g)",
-      "actual": "2/3 cup (109g"
+      "actual": "2/3 cup (109g,"
     },
     "calories": {
       "expected": 350,
@@ -19,17 +19,9 @@
       "expected": 22,
       "actual": null
     },
-    "saturated_fat_g": {
-      "expected": 14,
-      "actual": null
-    },
-    "cholesterol_mg": {
-      "expected": 30,
-      "actual": 130
-    },
     "sodium_mg": {
       "expected": 55,
-      "actual": null
+      "actual": 56
     },
     "total_carbohydrate_g": {
       "expected": 35,
@@ -38,10 +30,6 @@
     "dietary_fiber_g": {
       "expected": 2,
       "actual": null
-    },
-    "total_sugars_g": {
-      "expected": 30,
-      "actual": 130
     },
     "protein_g": {
       "expected": 4,
