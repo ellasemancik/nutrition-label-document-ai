@@ -17,7 +17,7 @@ def extract_nutrition_fields(text):
     }
 
     calories = re.search(
-    r"Calories(?:\s|\n)*(\d+)",
+    r"Calories[;:\s]*?(\d+)",
     text,
     re.IGNORECASE
     )
@@ -31,11 +31,15 @@ def extract_nutrition_fields(text):
     text,
     re.IGNORECASE
     )
-    total_fat = re.search(r"Tota[l!]\s+Fat\s+(\d+)g", text, re.IGNORECASE)
+    total_fat = re.search(
+    r"Tota[l!]\s*Fat[\s|(:]*?(\d+)g",
+    text,
+    re.IGNORECASE
+    )
     saturated_fat = re.search(
-        r"Saturated\s+Fat\s+(\d+|li)g",
-        text,
-        re.IGNORECASE
+    r"Saturated\s*Fat[\s|(:]*?(\d+|li)g",
+    text,
+    re.IGNORECASE
     )
     cholesterol = re.search(
         r"Cholesterol\s+(\d+)mg",
@@ -44,21 +48,25 @@ def extract_nutrition_fields(text):
     )
     sodium = re.search(r"Sodium\s+(\d+)mg", text, re.IGNORECASE)
     carbohydrates = re.search(
-    r"Total\s+Carb(?:\.|ohydrate)?\s+(\d+)g",
+    r"Total\s+Carb(?:\.|ohydrate)?[\s|(:]*?(\d+)g",
     text,
     re.IGNORECASE
     )
     fiber = re.search(
-        r"Dietary\s+Fiber\s+(\d+)g",
-        text,
-        re.IGNORECASE
+    r"Dietary\s*Fiber[\s|\\(:]*?(\d+)g",
+    text,
+    re.IGNORECASE
     )
     sugars = re.search(
         r"Total\s+Sugars\s+(\d+)g",
         text,
         re.IGNORECASE
     )
-    protein = re.search(r"Protein\s+(\d+)g", text, re.IGNORECASE)
+    protein = re.search(
+    r"Protein[\s|(:]*?(\d+)g",
+    text,
+    re.IGNORECASE
+    )
 
     if calories:
         results["calories"] = int(calories.group(1))
