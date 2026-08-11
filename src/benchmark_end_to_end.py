@@ -41,6 +41,7 @@ benchmark_results = {}
 
 total_accuracy = 0
 total_confidence = 0
+total_confidence_error = 0
 
 
 for label_name, files in labels.items():
@@ -94,16 +95,22 @@ for label_name, files in labels.items():
 
     accuracy = evaluation["accuracy"] * 100
     confidence_percent = confidence * 100
+    
+    confidence_error = abs(
+        confidence_percent - accuracy
+    )
 
     total_accuracy += accuracy
     total_confidence += confidence_percent
+    total_confidence_error += confidence_error
 
 
     benchmark_results[label_name] = {
         "correct_fields": evaluation["correct_fields"],
         "total_fields": evaluation["total_fields"],
         "accuracy": round(accuracy, 2),
-        "confidence": round(confidence_percent, 2)
+        "confidence": round(confidence_percent, 2),
+        "confidence_error": round(confidence_error, 2)
     }
 
 
@@ -114,6 +121,10 @@ for label_name, files in labels.items():
 
 average_accuracy = total_accuracy / len(labels)
 average_confidence = total_confidence / len(labels)
+
+average_confidence_error = (
+    total_confidence_error / len(labels)
+)
 
 
 benchmark_results["average_accuracy"] = round(
@@ -126,6 +137,10 @@ benchmark_results["average_confidence"] = round(
     2
 )
 
+benchmark_results["average_confidence_error"] = round(
+    average_confidence_error,
+    2
+)
 
 output_file = "data/outputs/end_to_end_benchmark.json"
 
@@ -138,5 +153,8 @@ print(round(average_accuracy, 2), "%")
 
 print("\nAverage confidence:")
 print(round(average_confidence, 2), "%")
+
+print("\nAverage confidence error:")
+print(round(average_confidence_error, 2), "%")
 
 print("\nBenchmark saved to:", output_file)
