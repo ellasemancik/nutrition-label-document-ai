@@ -14,5 +14,15 @@
     "total_fields": 11,
     "accuracy": 90.91
   },
-  "average_accuracy": 69.7
+  "label_05": {
+    "correct_fields": 11,
+    "total_fields": 11,
+    "accuracy": 100.0
+  },
+  "label_06": {
+    "correct_fields": 8,
+    "total_fields": 11,
+    "accuracy": 72.73
+  },
+  "average_accuracy": 76.36
 }

@@ -1,0 +1,19 @@
+{
+  "correct_fields": 8,
+  "total_fields": 11,
+  "accuracy": 0.7272727272727273,
+  "differences": {
+    "total_carbohydrate_g": {
+      "expected": 23,
+      "actual": null
+    },
+    "dietary_fiber_g": {
+      "expected": 1,
+      "actual": null
+    },
+    "total_sugars_g": {
+      "expected": 21,
+      "actual": null
+    }
+  }
+}

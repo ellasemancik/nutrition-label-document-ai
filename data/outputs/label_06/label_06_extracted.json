@@ -1,0 +1,22 @@
+{
+  "fields": {
+    "calories": 180,
+    "servings_per_container": 9,
+    "serving_size": "2/3 cup (88g)",
+    "total_fat_g": 9,
+    "saturated_fat_g": 5,
+    "cholesterol_mg": 35,
+    "sodium_mg": 65,
+    "total_carbohydrate_g": null,
+    "dietary_fiber_g": null,
+    "total_sugars_g": null,
+    "protein_g": 4
+  },
+  "validation_status": "warning",
+  "validation_warnings": [
+    "total_carbohydrate_g was not found",
+    "dietary_fiber_g was not found",
+    "total_sugars_g was not found"
+  ],
+  "confidence_score": 0.5772727272727273
+}

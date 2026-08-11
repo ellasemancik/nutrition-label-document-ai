@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "calories": 140,
+    "servings_per_container": 3,
+    "serving_size": "2/3 cup (100g)",
+    "total_fat_g": 3,
+    "saturated_fat_g": 1,
+    "cholesterol_mg": 50,
+    "sodium_mg": 215,
+    "total_carbohydrate_g": 20,
+    "dietary_fiber_g": 6,
+    "total_sugars_g": 8,
+    "protein_g": 13
+  },
+  "validation_status": "passed",
+  "validation_warnings": [],
+  "confidence_score": 1.0
+}

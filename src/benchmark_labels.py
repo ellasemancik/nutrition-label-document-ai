@@ -16,7 +16,15 @@ labels = {
     "label_04": {
         "ocr": "data/outputs/label_04/label_04_ocr.txt",
         "annotation": "data/annotations/label_04.json"
-    }
+    },
+    "label_05": {
+    "ocr": "data/outputs/label_05/label_05_ocr.txt",
+    "annotation": "data/annotations/label_05.json"
+    },
+    "label_06": {
+    "ocr": "data/outputs/label_06/label_06_ocr.txt",
+    "annotation": "data/annotations/label_06.json"
+}
 }
 
 

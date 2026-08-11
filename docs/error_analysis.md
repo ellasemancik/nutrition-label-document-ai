@@ -22,12 +22,29 @@ Main problems:
 - Total sugars 19g was read as 199.
 - The rest of the main nutrition fields were extracted well.
 
+## Label 05
+
+Main problems:
+- No major problems.
+- All 11 target fields were extracted correctly.
+- This label represents a clean, high-quality case.
+
+## Label 06
+
+Main problems:
+- Total carbohydrate 23g was OCR'd as 239.
+- Dietary fiber 1g was OCR'd as ig.
+- Total sugars 21g was OCR'd as 219.
+- The extractor correctly left these fields missing instead of guessing.
+
 ## Current Benchmark
 
 - Label 02: 72.73%
 - Label 03: 45.45%
 - Label 04: 90.91%
-- Average: 69.70%
+- Label 05: 100.00%
+- Label 06: 72.73%
+- Average: 76.36%
 
 ## Main Failure Types
 
