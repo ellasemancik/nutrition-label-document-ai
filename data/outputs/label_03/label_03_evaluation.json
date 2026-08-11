@@ -9,7 +9,7 @@
     },
     "serving_size": {
       "expected": "2/3 cup (109g)",
-      "actual": "2/3 cup (109g,"
+      "actual": "2/3 cup (109g"
     },
     "total_fat_g": {
       "expected": 22,

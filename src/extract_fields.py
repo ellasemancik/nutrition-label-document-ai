@@ -22,7 +22,7 @@ def extract_nutrition_fields(text):
     re.IGNORECASE
     )
     servings = re.search(
-    r"(\d+)\s+servings?\.?\s+per\s+container",
+    r"about\s*(\d+)\s*servings?\s*per\s*container|(\d+)\s*servings?\s*per\s*container",
     text,
     re.IGNORECASE
     )
@@ -72,10 +72,14 @@ def extract_nutrition_fields(text):
         results["calories"] = int(calories.group(1))
         
     if servings:
-        results["servings_per_container"] = int(servings.group(1))
+        value = servings.group(1) or servings.group(2)
+        results["servings_per_container"] = int(value)
         
     if serving_size:
-        results["serving_size"] = serving_size.group(1).strip()
+        value = serving_size.group(1).strip()
+        value = value.rstrip(",")
+
+        results["serving_size"] = value
 
     if total_fat:
         results["total_fat_g"] = int(total_fat.group(1))
