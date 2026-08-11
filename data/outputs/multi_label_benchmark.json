@@ -1,0 +1,18 @@
+{
+  "label_02": {
+    "correct_fields": 8,
+    "total_fields": 11,
+    "accuracy": 72.73
+  },
+  "label_03": {
+    "correct_fields": 5,
+    "total_fields": 11,
+    "accuracy": 45.45
+  },
+  "label_04": {
+    "correct_fields": 10,
+    "total_fields": 11,
+    "accuracy": 90.91
+  },
+  "average_accuracy": 69.7
+}
