@@ -1,0 +1,34 @@
+{
+  "label_02": {
+    "correct_fields": 8,
+    "total_fields": 11,
+    "accuracy": 72.73,
+    "confidence": 76.82
+  },
+  "label_03": {
+    "correct_fields": 5,
+    "total_fields": 11,
+    "accuracy": 45.45,
+    "confidence": 58.64
+  },
+  "label_04": {
+    "correct_fields": 10,
+    "total_fields": 11,
+    "accuracy": 90.91,
+    "confidence": 90.91
+  },
+  "label_05": {
+    "correct_fields": 11,
+    "total_fields": 11,
+    "accuracy": 100.0,
+    "confidence": 100.0
+  },
+  "label_06": {
+    "correct_fields": 8,
+    "total_fields": 11,
+    "accuracy": 72.73,
+    "confidence": 72.73
+  },
+  "average_accuracy": 76.36,
+  "average_confidence": 79.82
+}
