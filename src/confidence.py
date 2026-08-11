@@ -12,10 +12,20 @@ def calculate_confidence(results, warnings):
 
     score = found_fields / total_fields
 
-    # Lower the score a little for each warning
-    score = score - (0.05 * len(warnings))
+    # Missing fields are already reflected in the coverage score,
+    # so only apply a smaller penalty for extra validation problems.
+    extra_warnings = 0
+
+    for warning in warnings:
+        if "was not found" not in warning:
+            extra_warnings += 1
+
+    score = score - (0.05 * extra_warnings)
 
     if score < 0:
         score = 0
+
+    if score > 1:
+        score = 1
 
     return score

@@ -2,6 +2,8 @@ import json
 
 from evaluate import compare_results
 from extract_fields import extract_nutrition_fields
+from confidence import calculate_confidence
+from validate import validate_results
 
 
 labels = {
@@ -30,6 +32,7 @@ labels = {
 
 benchmark_results = {}
 total_accuracy = 0
+total_confidence_error = 0
 
 
 for label_name, files in labels.items():
@@ -41,6 +44,13 @@ for label_name, files in labels.items():
         expected_results = json.load(file)
 
     extracted_results = extract_nutrition_fields(ocr_text)
+    
+    warnings = validate_results(extracted_results)
+
+    confidence = calculate_confidence(
+        extracted_results,
+        warnings
+    )
 
     evaluation = compare_results(
         expected_results,
@@ -48,24 +58,40 @@ for label_name, files in labels.items():
     )
 
     accuracy = evaluation["accuracy"] * 100
+    confidence_percent = confidence * 100
+    
+    confidence_error = abs(
+        confidence_percent - accuracy
+    )
     total_accuracy += accuracy
+    total_confidence_error += confidence_error
 
     benchmark_results[label_name] = {
         "correct_fields": evaluation["correct_fields"],
         "total_fields": evaluation["total_fields"],
-        "accuracy": round(accuracy, 2)
+        "accuracy": round(accuracy, 2),
+        "confidence": round(confidence_percent, 2),
+        "confidence_error": round(confidence_error, 2)
     }
 
     print("\n", label_name)
     print("Correct:", evaluation["correct_fields"])
     print("Total:", evaluation["total_fields"])
     print("Accuracy:", round(accuracy, 2), "%")
+    print("Confidence:", round(confidence_percent, 2), "%")
+    print("Confidence error:", round(confidence_error, 2), "%")
 
 
 average_accuracy = total_accuracy / len(labels)
+average_confidence_error = total_confidence_error / len(labels)
 
 benchmark_results["average_accuracy"] = round(
     average_accuracy,
+    2
+)
+
+benchmark_results["average_confidence_error"] = round(
+    average_confidence_error,
     2
 )
 
@@ -78,5 +104,8 @@ with open(output_file, "w", encoding="utf-8") as file:
 
 print("\nAverage accuracy:")
 print(round(average_accuracy, 2), "%")
+
+print("\nAverage confidence error:")
+print(round(average_confidence_error, 2), "%")
 
 print("\nBenchmark saved to:", output_file)

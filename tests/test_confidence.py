@@ -15,4 +15,4 @@ def test_confidence_score():
 
     confidence = calculate_confidence(results, warnings)
 
-    assert confidence == 0.70
+    assert confidence == 0.75
