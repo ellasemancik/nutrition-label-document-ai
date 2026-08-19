@@ -1,55 +1,36 @@
 # Nutrition Label Document Intelligence
 
-## Project Overview
+This project takes nutrition label images and turns the information into structured JSON data.
 
-This project will take pictures of nutrition labels and turn the information into organized JSON data.
+It uses Tesseract OCR to read the text from each image, then Python code extracts specific nutrition fields, checks the values, gives the result a confidence score, and compares the output against manually entered correct answers.
 
-The goal is to learn how OCR systems read text from images and how that text can be cleaned, checked, and stored.
+Right now the project extracts:
 
-## Problem Statement
+- servings per container
+- serving size
+- calories
+- total fat
+- saturated fat
+- cholesterol
+- sodium
+- total carbohydrates
+- dietary fiber
+- total sugars
+- protein
 
-Nutrition label pictures are not always clear. They can be blurry, tilted, dark, or have glare.
+The general pipeline is:
 
-This project will test ways to read those images and extract useful nutrition information as accurately as possible.
+Image → preprocessing → OCR → field extraction → validation → confidence score → JSON
 
-## Initial Scope
+I have also been testing different OCR settings and preprocessing methods to see how they affect accuracy on labels with different layouts and image quality.
 
-The first version will focus on:
+Current benchmark across 5 labels:
 
-- Serving size
-- Calories
-- Total fat
-- Saturated fat
-- Cholesterol
-- Sodium
-- Total carbohydrates
-- Dietary fiber
-- Total sugars
-- Protein
+- Label 02: 72.73%
+- Label 03: 45.45%
+- Label 04: 90.91%
+- Label 05: 100%
+- Label 06: 72.73%
+- Average accuracy: 76.36%
 
-## Planned Pipeline
-
-Image → OCR → Text Extraction → Validation → Confidence Score → JSON
-
-## Success Criteria
-
-- Read text from nutrition label images
-- Extract important nutrition fields
-- Save the results as JSON
-- Check for incorrect or missing values
-- Measure accuracy
-- Add unit tests
-- Document the project
-
-## Roadmap
-
-1. Set up the project
-2. Collect nutrition label images
-3. Test basic OCR
-4. Improve image quality
-5. Extract nutrition fields
-6. Add validation rules
-7. Add confidence scores
-8. Measure performance
-9. Add tests
-10. Finish documentation
+The project also includes unit tests, saved OCR outputs, ground truth JSON files, validation rules, confidence scoring, and end-to-end benchmarking.

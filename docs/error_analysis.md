@@ -1,55 +1,63 @@
 # Error Analysis
 
-## Label 02
+These are just notes on what has been going wrong while testing different labels.
 
-Main problems:
-- Calories was missed by OCR.
-- Serving size was cut off by OCR.
-- Most other nutrition fields were extracted correctly.
+## label 02
 
-## Label 03
+Mostly worked well.
 
-Main problems:
-- OCR struggled with the two-column layout.
-- Some field names disappeared completely.
-- Some values were misread, such as sodium 55mg becoming 56mg.
-- Some values were read with extra digits, such as 22g becoming 229.
-- PSM 11 performed better than the other tested OCR settings.
+Calories got completely missed by OCR and the serving size got cut off.
 
-## Label 04
+Everything else was pretty good.
 
-Main problems:
-- Total sugars 19g was read as 199.
-- The rest of the main nutrition fields were extracted well.
+accuracy: 72.73%
 
-## Label 05
+## label 03
 
-Main problems:
-- No major problems.
-- All 11 target fields were extracted correctly.
-- This label represents a clean, high-quality case.
+Definitely the hardest one so far.
 
-## Label 06
+The two column layout seems to mess with Tesseract a lot. Some field names disappeared and some numbers were read wrong.
 
-Main problems:
-- Total carbohydrate 23g was OCR'd as 239.
-- Dietary fiber 1g was OCR'd as ig.
-- Total sugars 21g was OCR'd as 219.
-- The extractor correctly left these fields missing instead of guessing.
+Examples:
+- sodium 55mg became 56mg
+- 22g sometimes became 229
+- serving size lost the closing parenthesis
+- some field names and values ended up separated
 
-## Current Benchmark
+I tested thresholds 100, 140 and 180.
 
-- Label 02: 72.73%
-- Label 03: 45.45%
-- Label 04: 90.91%
-- Label 05: 100.00%
-- Label 06: 72.73%
-- Average: 76.36%
+I also tested Tesseract PSM 6 and 11.
 
-## Main Failure Types
+PSM 11 gave the best extraction accuracy so far.
 
-1. Missing OCR text
-2. Incorrect OCR characters or digits
-3. Multi-column layout confusion
-4. Field name and value separated onto different lines
-5. Minor formatting differences
+accuracy: 45.45%
+
+## label 04
+
+This one did really well.
+
+Main issue was total sugars. 19g got read as 199.
+
+accuracy: 90.91%
+
+## label 05
+
+Basically perfect.
+
+All 11 fields matched the ground truth.
+
+accuracy: 100%
+
+## label 06
+
+OCR mistakes were mostly numbers.
+
+23g became 239
+
+1g became ig
+
+21g became 219
+
+I left those values as missing instead of trying to guess what OCR meant.
+
+accuracy: 72.73%
