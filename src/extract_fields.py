@@ -27,12 +27,15 @@ def extract_nutrition_fields(text):
     re.IGNORECASE
     )
     serving_size = re.search(
-    r"Serving\s+size\s+(.+)",
+    r"\bServing\s*Size\s*[:\-]?\s*"
+    r"((?:\d+(?:/\d+)?\s*)?(?:cup|cups|tbsp|tsp|piece|pieces|bar|bars|"
+    r"slice|slices|cookie|cookies|package|container|bottle|oz|g|ml)\b"
+    r"[^\n]{0,35}|\d+(?:\.\d+)?\s*(?:g|ml|oz)\b)",
     text,
     re.IGNORECASE
     )
     total_fat = re.search(
-    r"Tota[l!]\s*Fat[\s|(:]*?(\d+)g",
+    r"\bTota[l!]\s*Fat\s*[:|(\s]*?(\d+)\s*g?\b",
     text,
     re.IGNORECASE
     )

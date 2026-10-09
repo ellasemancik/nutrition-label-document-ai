@@ -10,8 +10,8 @@
     "correct_fields": 5,
     "total_fields": 11,
     "accuracy": 45.45,
-    "confidence": 58.64,
-    "confidence_error": 13.18
+    "confidence": 67.73,
+    "confidence_error": 22.27
   },
   "label_04": {
     "correct_fields": 10,
@@ -35,6 +35,6 @@
     "confidence_error": 0.0
   },
   "average_accuracy": 76.36,
-  "average_confidence": 79.82,
-  "average_confidence_error": 3.45
+  "average_confidence": 81.64,
+  "average_confidence_error": 5.27
 }
