@@ -1,6 +1,18 @@
 # Dataset Notes and Error Analysis
 
-## label 01
+## Dataset expansion
+
+I started with 6 nutrition label images (label_01 through label_06). I then used `src/import_labels.py` to download 94 more images from Open Food Facts, bringing the collection to 100 images total.
+
+The importer saves each image in its own numbered folder under `data/raw/`. It also creates `data/import_manifest.jsonl`, which records information like the label number, product barcode, source URL, and image hash. This helps me keep track of where the images came from and avoid downloading duplicates.
+
+The 94 downloaded images are stored locally and are not uploaded to GitHub. They still need to be checked and manually annotated before I can use them in the accuracy benchmark.
+
+For now, the results below only cover labels 02–06. Label 01 was kept as a difficult example but was not part of that benchmark. The current average field accuracy is 76.36% across those 5 labels, **not** across all 100 images.
+
+## Original label testing
+
+### label 01
 
 file: label_01.png
 
@@ -10,7 +22,7 @@ Some of the problems: curved label, small text, multiple columns, packaging text
 
 I kept it as more of a difficult example instead of trying to make it the main baseline.
 
-## label 02
+### label 02
 
 Much cleaner than label 01. This one has both per serving and per container columns so I also made a cropped version with just the per serving side.
 
@@ -24,7 +36,7 @@ Everything else was pretty good.
 
 accuracy: 72.73%
 
-## label 03
+### label 03
 
 Harder two column label. This one caused a lot of OCR issues even though it looks pretty readable to a person.
 
@@ -44,7 +56,7 @@ PSM 11 has been the best result so far for this label.
 
 accuracy: 45.45%
 
-## label 04
+### label 04
 
 Pretty clean label and OCR worked well on most of it.
 
@@ -54,7 +66,7 @@ Main issue was total sugars. 19g got read as 199.
 
 accuracy: 90.91%
 
-## label 05
+### label 05
 
 Best label so far. Clean image and the pipeline got all 11 fields correct.
 
@@ -64,7 +76,7 @@ All 11 fields matched the ground truth.
 
 accuracy: 100%
 
-## label 06
+### label 06
 
 Mostly clean but OCR made a few number mistakes like turning 23g into 239.
 
