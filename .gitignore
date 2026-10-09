@@ -218,3 +218,8 @@ __marimo__/
 .streamlit/secrets.toml
 
 desktop.ini
+
+# Bulk downloaded nutrition labels
+/data/raw/label_0[7-9]/
+/data/raw/label_[1-9][0-9]/
+/data/raw/label_100/
